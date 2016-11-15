@@ -1,6 +1,13 @@
-export abstract class Temporal extends TemporalAccessor {
+export declare abstract class TemporalAccessor {
+    get(field: TemporalField): number
+
+    query(query: TemporalQuery): any
+
+    range(field: TemporalField): ValueRange
 }
-export abstract class Clock {
+export declare abstract class Temporal extends TemporalAccessor {
+}
+export declare abstract class Clock {
     static fixed(fixedInstant: Instant, zoneOffset: ZoneOffset): Clock
 
     static system(zone: ZoneId): Clock
@@ -15,7 +22,7 @@ export abstract class Clock {
 
     abstract zone(): any
 }
-export class DayOfWeek extends Temporal {
+export declare class DayOfWeek extends Temporal {
     static MONDAY: DayOfWeek
     static TUESDAY: DayOfWeek
     static WEDNESDAY: DayOfWeek
@@ -54,7 +61,7 @@ export class DayOfWeek extends Temporal {
 
     value(): number
 }
-export class TemporalAmount {
+export declare class TemporalAmount {
     addTo(temporal: Temporal): Temporal
 
     get(unit: TemporalUnit): number
@@ -63,7 +70,7 @@ export class TemporalAmount {
 
     subtractFrom(temporal: Temporal): Temporal
 }
-export class Duration extends TemporalAmount {
+export declare class Duration extends TemporalAmount {
     static ZERO: Duration
 
     static between(startInclusive: Temporal, endExclusive: Temporal): Duration
@@ -170,7 +177,7 @@ export class Duration extends TemporalAmount {
 
     withSeconds(seconds: number): Duration
 }
-export class Instant extends Temporal {
+export declare class Instant extends Temporal {
     static EPOCH: Instant
     static MIN: Instant
     static MAX: Instant
@@ -244,7 +251,7 @@ export class Instant extends Temporal {
 
     withTemporalAdjuster(adjuster: TemporalAdjuster): Instant
 }
-export class DateTimeBuilder extends Temporal {
+export declare class DateTimeBuilder extends Temporal {
     static create(field: TemporalField, value: number): DateTimeBuilder
 
     constructor()
@@ -269,12 +276,12 @@ export class DateTimeBuilder extends Temporal {
 
     resolve(resolverStyle: ResolverStyle, resolverFields: Array<TemporalField>): DateTimeBuilder
 }
-export class ResolverStyle {
+export declare class ResolverStyle {
     static STRICT: ResolverStyle
     static SMART: ResolverStyle
     static LENIENT: ResolverStyle
 }
-export class DateTimeFormatter {
+export declare class DateTimeFormatter {
     static ISO_LOCAL_DATE: DateTimeFormatter
     static ISO_LOCAL_TIME: DateTimeFormatter
     static ISO_LOCAL_DATE_TIME: DateTimeFormatter
@@ -310,7 +317,7 @@ export class DateTimeFormatter {
 
     withLocale(): DateTimeFormatter
 }
-export class DateTimeFormatterBuilder {
+export declare class DateTimeFormatterBuilder {
     constructor(parentBuilder: DateTimeFormatterBuilder, optional: boolean)
 
     append(formatter: DateTimeFormatter): DateTimeFormatterBuilder
@@ -349,10 +356,10 @@ export class DateTimeFormatterBuilder {
 
     toFormatter(resolverStyle: ResolverStyle): DateTimeFormatter
 }
-export class Chronology {
+export declare class Chronology {
     // TODO: this
 }
-export class LocalTime extends Temporal {
+export declare class LocalTime extends Temporal {
     static MIN: LocalTime
     static MAX: LocalTime
     static MIDNIGHT: LocalTime
@@ -467,7 +474,7 @@ export class LocalTime extends Temporal {
 
     withTemporalAdjuster(adjuster: TemporalAdjuster): LocalTime
 }
-export class MathUtil {
+export declare class MathUtil {
     static compareNumbers(a: number, b: number): number
 
     static floorDiv(x: number, y: number): number
@@ -494,7 +501,7 @@ export class MathUtil {
 
     static verifyInt(value: number): void
 }
-export class Month extends Temporal {
+export declare class Month extends Temporal {
     static JANUARY: Month
     static FEBRUARY: Month
     static MARCH: Month
@@ -546,7 +553,7 @@ export class Month extends Temporal {
 
     value(): number
 }
-export class MonthDay extends Temporal {
+export declare class MonthDay extends Temporal {
     static from(temporal: TemporalAccessor): MonthDay
 
     static now(arg1?: ZoneId | Clock): MonthDay
@@ -605,9 +612,9 @@ export class MonthDay extends Temporal {
 
     withMonth(month: number): MonthDay
 }
-export interface TemporalField {
+export declare interface TemporalField {
 }
-export class ChronoField {
+export declare class ChronoField {
     static NANO_OF_SECOND: ChronoField
     static NANO_OF_DAY: ChronoField
     static MICRO_OF_SECOND: ChronoField
@@ -667,7 +674,7 @@ export class ChronoField {
 
     toString(): string
 }
-export class TemporalUnit {
+export declare class TemporalUnit {
     addTo(temporal: Temporal, amount: number): Temporal
 
     between(temporal1: Temporal, temporal2: Temporal): number
@@ -682,7 +689,7 @@ export class TemporalUnit {
 
     isTimeBased(): boolean
 }
-export class ChronoUnit extends TemporalUnit {
+export declare class ChronoUnit extends TemporalUnit {
     static MICROS: ChronoUnit
     static MILLIS: ChronoUnit
     static SECONDS: ChronoUnit
@@ -719,7 +726,7 @@ export class ChronoUnit extends TemporalUnit {
 
     toString(): string
 }
-export class IsoFields {
+export declare class IsoFields {
     static DAY_OF_QUARTER: IsoFields
     static QUARTER_OF_YEAR: IsoFields
     static WEEK_OF_WEEK_BASED_YEAR: IsoFields
@@ -727,14 +734,14 @@ export class IsoFields {
     static WEEK_BASED_YEARS: IsoFields
     static QUARTER_YEARS: IsoFields
 }
-export class ChronoLocalDate extends Temporal {
+export declare class ChronoLocalDate extends Temporal {
     adjustInto(temporal: TemporalAdjuster): this
 
     format(formatter: DateTimeFormatter): string
 
     isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 }
-export class LocalDate extends ChronoLocalDate {
+export declare class LocalDate extends ChronoLocalDate {
     static MIN: LocalDate
     static MAX: LocalDate
     static EPOCH_0: LocalDate
@@ -850,7 +857,7 @@ export class LocalDate extends ChronoLocalDate {
 
     year(): number
 }
-export abstract class ChronoLocalDateTime extends Temporal {
+export declare abstract class ChronoLocalDateTime extends Temporal {
     adjustInto(temporal: any): any
 
     chronology(): Chronology
@@ -859,7 +866,7 @@ export abstract class ChronoLocalDateTime extends Temporal {
 
     toInstant(offset: ZoneOffset): Instant
 }
-export class LocalDateTime extends ChronoLocalDateTime {
+export declare class LocalDateTime extends ChronoLocalDateTime {
     static MIN: LocalDateTime
     static MAX: LocalDateTime
 
@@ -1004,10 +1011,10 @@ export class LocalDateTime extends ChronoLocalDateTime {
 
     year(): number
 }
-export class OffsetDateTime {
+export declare class OffsetDateTime {
     // TODO
 }
-export class Period extends TemporalAmount {
+export declare class Period extends TemporalAmount {
     static ZERO: Period
 
     static between(startDate: LocalDate, endDate: LocalDate): Period
@@ -1086,15 +1093,15 @@ export class Period extends TemporalAmount {
 
     years(): number
 }
-export class StringUtil {
+export declare class StringUtil {
     static hashCode(text: string): number
 
     static startsWith(text: string, pattern: string): boolean
 }
-export class TemporalAdjuster {
+export declare class TemporalAdjuster {
     adjustInto(temporal: Temporal): Temporal
 }
-export class TemporalAdjusters {
+export declare class TemporalAdjusters {
     static dayOfWeekInMonth(ordinal: number, dayOfWeek: DayOfWeek): TemporalAdjuster
 
     static firstDayOfMonth(): TemporalAdjuster
@@ -1121,7 +1128,7 @@ export class TemporalAdjusters {
 
     static previousOrSame(dayOfWeek: DayOfWeek): TemporalAdjuster
 }
-export class TemporalQueries {
+export declare class TemporalQueries {
     static chronology(): TemporalQuery
 
     static localDate(): TemporalQuery
@@ -1136,10 +1143,10 @@ export class TemporalQueries {
 
     static zoneId(): TemporalQuery
 }
-export class TemporalQuery {
+export declare class TemporalQuery {
     queryFrom(temporal: TemporalAccessor): any
 }
-export class ValueRange {
+export declare class ValueRange {
     static of(min: number, max: number): ValueRange
     static of(min: number, maxSmallest: number, maxLargest: number): ValueRange
     static of(minSmallest: number, minLargest: number, maxSmallest: number, maxLargest: number): ValueRange
@@ -1172,7 +1179,7 @@ export class ValueRange {
 
     toString(): string
 }
-export class Year extends Temporal {
+export declare class Year extends Temporal {
     static MIN_VALUE: number;
     static MAX_VALUE: number;
 
@@ -1192,7 +1199,7 @@ export class Year extends Temporal {
 
     minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
 }
-export class YearMonth extends Temporal {
+export declare class YearMonth extends Temporal {
     static from(temporal: TemporalAccessor): YearMonth
 
     static now(zoneIdOrClock?: ZoneId | Clock): YearMonth
@@ -1209,7 +1216,7 @@ export class YearMonth extends Temporal {
 
     isSupported(fieldOrUnit: TemporalField | ChronoUnit): boolean
 }
-export class ZoneId {
+export declare class ZoneId {
     static SYSTEM: ZoneId;
     static UTC: ZoneId;
 
@@ -1225,7 +1232,7 @@ export class ZoneId {
 
     toString(): string
 }
-export class ZoneOffset extends ZoneId {
+export declare class ZoneOffset extends ZoneId {
     static MAX_SECONDS: ZoneOffset
     static UTC: ZoneOffset
     static MIN: ZoneOffset
@@ -1267,7 +1274,7 @@ export class ZoneOffset extends ZoneId {
 
     totalSeconds(): number
 }
-export class ZoneRegion extends ZoneId {
+export declare class ZoneRegion extends ZoneId {
     static ofId(zoneId: any): ZoneId
 
     constructor(id: string, rules: ZoneRules)
@@ -1276,7 +1283,7 @@ export class ZoneRegion extends ZoneId {
 
     rules(): ZoneRules
 }
-export export class ZoneRules {
+export declare class ZoneRules {
     static of(offest: ZoneOffset): ZoneRules
 
     isFixedOffset(): boolean
@@ -1292,7 +1299,7 @@ export export class ZoneRules {
     offsetOfLocalDateTime(localDateTime: LocalDateTime): ZoneOffset
 
 }
-export abstract class ChronoZonedDateTime extends Temporal {
+export declare abstract class ChronoZonedDateTime extends Temporal {
     compareTo(other: ChronoZonedDateTime): number
 
     equals(other: any): boolean
@@ -1311,7 +1318,7 @@ export abstract class ChronoZonedDateTime extends Temporal {
 
     toInstant(): Instant
 }
-export class ZonedDateTime extends ChronoZonedDateTime {
+export declare class ZonedDateTime extends ChronoZonedDateTime {
     static from(temporal: TemporalAccessor): ZonedDateTime
 
     static now(clockOrZone?: Clock | ZoneId): ZonedDateTime
@@ -1458,17 +1465,17 @@ export class ZonedDateTime extends ChronoZonedDateTime {
 
     zone(): ZoneId
 }
-export class TextStyle {
+export declare class TextStyle {
     asNormal(): TextStyle
 
     asStandalone(): TextStyle
 
     isStandalone(): boolean
 }
-export class Locale {
+export declare class Locale {
     // TODO
 }
-export abstract class IsoChronology {
+export declare abstract class IsoChronology {
     static isLeapYear(prolepticYear: number): boolean
 
     resolveDate(fieldValues: any, resolverStyle: any): any
@@ -1477,4 +1484,4 @@ export abstract class IsoChronology {
 
     toString(): string
 }
-export function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
+export declare function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
