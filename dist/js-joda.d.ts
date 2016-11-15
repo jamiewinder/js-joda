@@ -1,5 +1,7 @@
-declare namespace JSJoda {
+export = JSJoda;
+export as namespace JSJoda;
 
+declare namespace JSJoda {
     abstract class TemporalAccessor {
         get(field: TemporalField): number
 
@@ -1223,7 +1225,7 @@ declare namespace JSJoda {
     class ZoneId {
         static SYSTEM: ZoneId;
         static UTC: ZoneId;
-        
+
         static of(zoneId: string): ZoneId;
 
         equals(other: any): boolean
@@ -1491,5 +1493,3 @@ declare namespace JSJoda {
 
     function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
 }
-
-export = JSJoda;
